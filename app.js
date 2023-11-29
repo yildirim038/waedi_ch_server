@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import adminsRouter from './auth/auth.js';
+import usersRoute from './auth/auth.js';
+import eventRoute from './routers/EventRoute.js'
 import db from './models/SequelizeSetup.js'; 
 
 const app = express();
@@ -12,8 +13,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Auth routes
-app.use('/auth', adminsRouter);
-
+app.use('/auth', usersRoute);
+app.use('/auth', eventRoute);
 // Test route
 app.get('/', (req, res) => {
   res.send('Server is running!');

@@ -3,11 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import * as userService from '../services/UserService.js'
 import db from '../models/SequelizeSetup.js';
-import authMiddleware from './authMiddleware.js';
 const router = express.Router();
-
-
-
 router.get('/', async (req, res, next) => res.status(200).send(await userService.getAllAdmin()));
 router.get('/:id',async (req, res, next) => res.status(200).send(await userService.getAdminById(req.params.id)));
 
@@ -30,28 +26,19 @@ router.post('/login', async (req, res) => {
 
   try {
     const user = await db.user.findOne({ where: { email } });
-
     if (!user || !bcrypt.compareSync(password, user.password)) {
       return res.status(401).json({ message: ' Username or password is wrong' });
     }
 
-    const token = jwt.sign({ email: email, role: user.role }, 'secret-key', { expiresIn: '1h' });
+    const token = jwt.sign({ email: email, role: user.dataValues.role }, 'secret-key', { expiresIn: '1h' });
 
-    res.json({ token });
+    res.json({ token:token,email:email,role:user.dataValues.role});
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'An error occurred' });
   }
 });
 
-router.get('/tokenCheck', authMiddleware, (req, res) => {
-  try {
-    res.json({ message: 'Token is valid', role: req.user.role });
-  } catch (error) {
-    console.error(error);
-    res.status(401).json({ message: 'Token is invalid' });
-  }
-});
 
 router.post('/logout', (req, res) => {
   res.json({ message: 'Logout successful' });
