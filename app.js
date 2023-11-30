@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 // Auth routes
 app.use('/auth', usersRoute);
-app.use('/auth', eventRoute);
+app.use('/events', eventRoute);
 // Test route
 app.get('/', (req, res) => {
   res.send('Server is running!');
