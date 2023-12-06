@@ -4,7 +4,7 @@ export async function createEvent(pEvent) {
     return await eventRepository.create(pEvent);
 }
 
-export async function deleteAdmin(pId) {
+export async function deleteEvent(pId) {
     return await eventRepository.remove(pId);
 }
 
