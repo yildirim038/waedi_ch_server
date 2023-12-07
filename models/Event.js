@@ -23,6 +23,9 @@ export default (sequelize, DataTypes) => {
       },
       image:{
         type: DataTypes.STRING
+      } ,
+      text:{
+        type: DataTypes.STRING
       }
     });
   

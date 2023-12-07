@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 // Auth routes
 app.use('/auth', usersRoute);
 app.use('/events', eventRoute);
+app.use('/image', express.static('./public/images'))
 // Test route
 app.get('/', (req, res) => {
   res.send('Server is running!');
