@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import usersRoute from './auth/auth.js';
+import advertRoute from './routers/AdvertRoute.js'
 import eventRoute from './routers/EventRoute.js'
 import db from './models/SequelizeSetup.js'; 
 
@@ -15,7 +16,8 @@ app.use(bodyParser.json());
 // Auth routes
 app.use('/auth', usersRoute);
 app.use('/events', eventRoute);
-app.use('/image', express.static('./public/images'))
+app.use('/adverts', advertRoute);
+app.use('/images', express.static('./public/images'))
 // Test route
 app.get('/', (req, res) => {
   res.send('Server is running!');
