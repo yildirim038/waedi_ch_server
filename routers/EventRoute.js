@@ -15,10 +15,12 @@ router.delete('/:id', async function (req, res, next) {
     res.status(200).send("deleted");
 })
 
-router.put('/:id', async function (req, res, next) {
+router.put('/:id', upload, async function (req, res, next) {
     let eventId = req.params.id;
-    let eventToBeUpdated = req.body;
-    let updatedEvent = await eventService.updateEvent(eventId, eventToBeUpdated);
+    const { name, startdatum, enddatum, adresse, plz, ort, link, text } = req.body;
+    const image = req.file?.filename
+    const updatedEventData = { name, startdatum, enddatum, adresse, plz, ort, link, image, text };
+    let updatedEvent = await eventService.updateEvent(eventId, updatedEventData);
     res.status(200).send(updatedEvent);
 });
 
@@ -27,7 +29,7 @@ router.post('/', upload, async (req, res, next) => {
   try {
 
     const { name, startdatum, enddatum, adresse, plz, ort, link, text } = req.body;
-    const image = req.file.filename
+    const image = req.file?.filename;
     
     const eventData = { name, startdatum, enddatum, adresse, plz, ort, link, image, text };
     const createdEvent = await eventService.createEvent(eventData);

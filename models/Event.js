@@ -26,6 +26,9 @@ export default (sequelize, DataTypes) => {
       } ,
       text:{
         type: DataTypes.STRING
+      },
+      link:{
+        type: DataTypes.STRING
       }
     });
   
