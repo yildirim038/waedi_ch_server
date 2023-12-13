@@ -4,6 +4,8 @@ import bodyParser from 'body-parser';
 import usersRoute from './auth/auth.js';
 import advertRoute from './routers/AdvertRoute.js'
 import eventRoute from './routers/EventRoute.js'
+import questionRoute from './routers/QuestionRoute.js'
+import interviewRoute from './routers/InterviewRoute.js';
 import db from './models/SequelizeSetup.js'; 
 
 const app = express();
@@ -17,6 +19,8 @@ app.use(bodyParser.json());
 app.use('/auth', usersRoute);
 app.use('/events', eventRoute);
 app.use('/adverts', advertRoute);
+app.use('/interviews', interviewRoute)
+app.use('/question', questionRoute)
 app.use('/images', express.static('./public/images'))
 // Test route
 app.get('/', (req, res) => {

@@ -3,6 +3,8 @@ import {database,username,password,host,dialect,pool} from "../config/config.js"
 import UserModel from "./User.js"
 import EventModel from './Event.js'
 import AdvertModel from './Advert.js';
+import InterviewModel from './Interview.js';
+import QuestionModel from './Question.js';
 
 const sequelize = new Sequelize(database, username, password, {
   host: host,
@@ -24,11 +26,14 @@ db.sequelize = sequelize;
 db.user = UserModel(sequelize, Sequelize);
 db.event= EventModel(sequelize, Sequelize);
 db.advert= AdvertModel(sequelize,Sequelize);
+db.interview = InterviewModel(sequelize,Sequelize)
+db.question = QuestionModel(sequelize,Sequelize)
 
 
 // create relationship
 
-//db.user.hasMany(db.galerie);
+db.interview.hasMany(db.question);
+
 export default db;
 
 
