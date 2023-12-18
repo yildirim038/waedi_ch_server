@@ -1,7 +1,7 @@
 export default (sequelize, DataTypes) => {
     const Interview = sequelize.define('interview', {
       title: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT('long'),
         allowNull: false
        },
       imageTitel: {
@@ -11,7 +11,7 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.STRING,
        },
       coverText: {
-        type: DataTypes.STRING
+        type: DataTypes.TEXT('long')
       },
       image:{
         type: DataTypes.STRING
