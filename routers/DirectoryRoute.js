@@ -31,7 +31,7 @@ router.post('/', upload, async (req, res, next) => {
     const { category, companyType, organization, adresse, plz, ort, website, description,contactFirstname,contactLastname,tel,fax,email} = req.body;
     const image = req.file?.filename;
     const directoryData = {category, companyType, organization, adresse, plz, ort, website, description,contactFirstname,contactLastname,tel,fax,email, image };
-    const createdDirectory = await directoryService.createdDirectory(directoryData);
+    const createdDirectory = await directoryService.createDirectory(directoryData);
 
     res.status(200).json(createdDirectory);
   } catch (error) {
