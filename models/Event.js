@@ -1,5 +1,9 @@
 export default (sequelize, DataTypes) => {
     const Event = sequelize.define('event', {
+      eventType:{
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       name: {
         type: DataTypes.STRING,
         allowNull: false
