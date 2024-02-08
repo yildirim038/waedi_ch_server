@@ -1,21 +1,16 @@
 export default (sequelize, DataTypes) => {
-    const Event = sequelize.define('event', {
-      eventType:{
+    const Advert = sequelize.define('advert', {
+      name:{
         type: DataTypes.STRING,
         allowNull: false
       },
-      name: {
+      email: {
         type: DataTypes.STRING,
         allowNull: false
-       },
-      startdatum: {
-        type: DataTypes.DATEONLY,
-        allowNull: false
       },
-      enddatum: {
-        type: DataTypes.DATEONLY,
-        allowNull: false,
-       },
+      publish: {
+        type: DataTypes.BOOLEAN,
+      },
       adresse: {
         type: DataTypes.STRING
       },
@@ -33,8 +28,14 @@ export default (sequelize, DataTypes) => {
       },
       link:{
         type: DataTypes.STRING
+      },
+      advertPage:{
+        type: DataTypes.STRING
+      },
+      advertType:{
+        type: DataTypes.STRING
       }
     });
   
-    return Event;
+    return Advert;
   };
